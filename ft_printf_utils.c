@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: yuriiartymicloud.com <yuriiartymicloud.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/23 13:26:42 by yuriiartymi       #+#    #+#             */
-/*   Updated: 2025/12/01 13:55:11by yuriiartymi      ###   ########.fr       */
+/*   Created: 2025/12/05 16:14:38 by yuriiartymi       #+#    #+#             */
+/*   Updated: 2025/12/05 16:59:33 by yuriiartymi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 static void	dec_to_hex(unsigned long n, char c, int *count)
 {
-	char *hex;
+	char	*hex;
 
-	if (c == 'l' || c == 'p')
+	if (c == 'x' || c == 'p')
 		hex = "0123456789abcdef";
-	else if (c == 'u')
+	else if (c == 'X')
 		hex = "0123456789ABCDEF";
 	else
 		return ;
@@ -47,34 +47,25 @@ int	convert(char c, va_list *args)
 	int		n;
 
 	n = 0;
-	if (c == 'c')
+	if (c == 'c' || c == '%')
 	{
 		ft_putchar_fd(c, 1);
-		n = 1;
+		n++;
 	}
-	else if (c == 's')
+	else if (c == 's' || c == 'd' || c == 'i')
 	{
-		str = va_arg(*args, char *);
+		if (c == 's')
+			str = va_arg(*args, char *);
+		else
+			str = ft_itoa(va_arg(*args, int));
 		ft_putstr_fd(str, 1);
-		n = ft_strlen(str);
-	}
-	else if (c == 'd' || c == 'i')
-	{
-		str = ft_itoa((va_arg(*args, int)));
 		n = ft_strlen(str);
 	}
 	else if (c == 'p')
 		dec_to_hex(va_arg(*args, unsigned long), 'p', &n);
 	else if (c == 'u')
 		ft_put_uint(va_arg(*args, unsigned int), &n);
-	else if (c == 'x')
-		dec_to_hex(va_arg(*args, unsigned int), 'l', &n);
-	else if (c == 'X')
-		dec_to_hex(va_arg(*args, unsigned int), 'u', &n);
-	else if (c == '%')
-	{
-		ft_putchar_fd('%', 1);
-		n = 1;
-	}
+	else if (c == 'x' || c == 'X')
+		dec_to_hex(va_arg(*args, unsigned int), c, &n);
 	return (n);
 }

@@ -15,19 +15,22 @@
 int	ft_printf(const char *str, ...)
 {
 	int		i;
-	int		str_len;
+	int		count;
 
 	i = 0;
-	str_len = 0;
+	count = 0;
 	va_list	args;
 	va_start(args, str);
 	while (str[i] != '\0')
 	{
 		if (str[i] == '%')
-			create_str(str[++i], &args);
+			count += convert(str[++i], &args);
 		else
+		{
 			ft_putchar_fd(str[i], 1);
+			count++;
+		}
 		i++;
 	}
-	return (str_len);
+	return (count);
 }

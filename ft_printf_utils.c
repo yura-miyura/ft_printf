@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-void	dec_to_hex(unsigned long n, char c)
+static void	dec_to_hex(unsigned long n, char c, int *count)
 {
 	char *hex;
 
@@ -23,38 +23,58 @@ void	dec_to_hex(unsigned long n, char c)
 	else
 		return ;
 	if (n >= 16)
-		dec_to_hex(n / 16, c);
+		dec_to_hex(n / 16, c, count);
 	if (n < 16 && c == 'p')
 	{
 		ft_putstr_fd("0x", 1);
+		*count += 2;
 	}
 	ft_putchar_fd(hex[n % 16], 1);
+	(*count)++;
 }
 
-void	ft_put_uint(unsigned int n)
+static void	ft_put_uint(unsigned int n, int *count)
 {
 	if (n >= 10)
-		ft_put_uint(n / 10);
+		ft_put_uint(n / 10, count);
 	ft_putchar_fd((n % 10 + '0'), 1);
+	(*count)++;
 }
-void	create_str(char c, va_list *args)
+
+int	convert(char c, va_list *args)
 {
+	char	*str;
+	int		n;
+
+	n = 0;
 	if (c == 'c')
-		ft_putchar_fd((char) va_arg(*args, int), 1);
+	{
+		ft_putchar_fd(c, 1);
+		n = 1;
+	}
 	else if (c == 's')
-		ft_putstr_fd(va_arg(*args, char *), 1);
+	{
+		str = va_arg(*args, char *);
+		ft_putstr_fd(str, 1);
+		n = ft_strlen(str);
+	}
 	else if (c == 'd' || c == 'i')
-		ft_putnbr_fd(va_arg(*args, int), 1);
+	{
+		str = ft_itoa((va_arg(*args, int)));
+		n = ft_strlen(str);
+	}
 	else if (c == 'p')
-		dec_to_hex(va_arg(*args, unsigned long), 'p');
+		dec_to_hex(va_arg(*args, unsigned long), 'p', &n);
 	else if (c == 'u')
-		ft_put_uint(va_arg(*args, unsigned int));
+		ft_put_uint(va_arg(*args, unsigned int), &n);
 	else if (c == 'x')
-		dec_to_hex(va_arg(*args, unsigned int), 'l');
+		dec_to_hex(va_arg(*args, unsigned int), 'l', &n);
 	else if (c == 'X')
-		dec_to_hex(va_arg(*args, unsigned int), 'u');
+		dec_to_hex(va_arg(*args, unsigned int), 'u', &n);
 	else if (c == '%')
+	{
 		ft_putchar_fd('%', 1);
-	else
-		return ;
+		n = 1;
+	}
+	return (n);
 }

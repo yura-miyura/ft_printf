@@ -3,6 +3,7 @@
 
 int main(void)
 {
-	ft_printf("1: %i, %c, %x, %%, %s, %p\n", -1, 'a', -123, "hello", "hello");
-	printf("2: %i, %c, %x, %%, %s, %p\n", -1, 'a', -123, "hello", "hello");
+	int i1 = ft_printf("1: %X\n", 124);
+	int i2 = printf("2: %X\n", 124);
+	printf("i1: %i, i2: %i", i1, i2);
 }

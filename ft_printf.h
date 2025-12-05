@@ -16,9 +16,7 @@
 # include "libft/libft.h"
 # include <stdarg.h>
 
-void	create_str(char c, va_list *args);
-int		ft_printf(const char *str, ...);
-void	dec_to_hex(unsigned long n, char c);
-void	ft_put_uint(unsigned int n);
+int	convert(char c, va_list *args);
+int	ft_printf(const char *str, ...);
 
 #endif

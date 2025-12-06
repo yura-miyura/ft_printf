@@ -6,7 +6,7 @@
 /*   By: yuriiartymicloud.com <yuriiartymicloud.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/05 16:14:38 by yuriiartymi       #+#    #+#             */
-/*   Updated: 2025/12/05 16:59:33 by yuriiartymi      ###   ########.fr       */
+/*   Updated: 2025/12/06 15:51:26 by yuriiartymi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,32 +40,49 @@ static void	ft_put_uint(unsigned int n, int *count)
 	ft_putchar_fd((n % 10 + '0'), 1);
 	(*count)++;
 }
+static int	put_str(char *str)
+{
+	int		len;
+
+	if (str == NULL)
+		str = "(null)";
+	ft_putstr_fd(str, 1);
+	len = ft_strlen(str);
+	return (len);
+}
+
+static int	put_dec_int(int n)
+{
+	char	*str;
+	int		len;
+
+	str = ft_itoa(n);
+	ft_putstr_fd(str, 1);
+	len = ft_strlen(str);
+	free(str);
+	return (len);
+}
 
 int	convert(char c, va_list *args)
 {
-	char	*str;
 	int		n;
 
 	n = 0;
-	if (c == 'c' || c == '%')
-	{
-		ft_putchar_fd(c, 1);
-		n++;
-	}
-	else if (c == 's' || c == 'd' || c == 'i')
-	{
-		if (c == 's')
-			str = va_arg(*args, char *);
-		else
-			str = ft_itoa(va_arg(*args, int));
-		ft_putstr_fd(str, 1);
-		n = ft_strlen(str);
-	}
+	if (c == 'c')
+		ft_putchar_fd(va_arg(*args, int), ++n);
+	else if (c == '%')
+		ft_putchar_fd('%', ++n);
+	else if (c == 's')
+		n = put_str(va_arg(*args, char *));
+	else if (c == 'i' || c == 'd')
+		n = put_dec_int(va_arg(*args, int));
 	else if (c == 'p')
 		dec_to_hex(va_arg(*args, unsigned long), 'p', &n);
 	else if (c == 'u')
 		ft_put_uint(va_arg(*args, unsigned int), &n);
 	else if (c == 'x' || c == 'X')
 		dec_to_hex(va_arg(*args, unsigned int), c, &n);
+	else
+		n = -1;
 	return (n);
 }

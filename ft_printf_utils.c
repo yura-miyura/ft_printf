@@ -12,20 +12,19 @@
 
 #include "ft_printf.h"
 
-static void	dec_to_hex(unsigned long n, char c, int *count)
+static void dec_to_hex(unsigned long n, char c, int *count)
 {
-	char	*hex;
+	char *hex;
 
 	if (c == 'x' || c == 'p')
 		hex = "0123456789abcdef";
 	else if (c == 'X')
 		hex = "0123456789ABCDEF";
 	else
-		return ;
+		return;
 	if (n >= 16)
 		dec_to_hex(n / 16, c, count);
-	if (n < 16 && c == 'p')
-	{
+	if (n < 16 && c == 'p') {
 		ft_putstr_fd("0x", 1);
 		*count += 2;
 	}
@@ -33,16 +32,17 @@ static void	dec_to_hex(unsigned long n, char c, int *count)
 	(*count)++;
 }
 
-static void	ft_put_uint(unsigned int n, int *count)
+static void ft_put_uint(unsigned int n, int *count)
 {
 	if (n >= 10)
 		ft_put_uint(n / 10, count);
 	ft_putchar_fd((n % 10 + '0'), 1);
 	(*count)++;
 }
-static int	put_str(char *str)
+
+static int put_str(char *str)
 {
-	int		len;
+	int len;
 
 	if (str == NULL)
 		str = "(null)";
@@ -51,10 +51,10 @@ static int	put_str(char *str)
 	return (len);
 }
 
-static int	put_dec_int(int n)
+static int put_dec_int(int n)
 {
-	char	*str;
-	int		len;
+	char *str;
+	int len;
 
 	str = ft_itoa(n);
 	ft_putstr_fd(str, 1);
@@ -63,26 +63,39 @@ static int	put_dec_int(int n)
 	return (len);
 }
 
-int	convert(char c, va_list *args)
+static void	ft_put_pointer(unsigned long number, int *count)
 {
-	int		n;
+	if (number > 0)
+	{
+		ft_putstr_fd("0x", 1);
+		*count += 2;
+		dec_to_hex(number, 'x', count);
+	}
+	else
+	{
+		ft_putstr_fd("(nil)", 1);
+		*count += 5;
+	}
+}
+
+int convert(char c, va_list *args)
+{
+	int n;
 
 	n = 0;
 	if (c == 'c')
 		ft_putchar_fd(va_arg(*args, int), ++n);
-	else if (c == '%')
-		ft_putchar_fd('%', ++n);
 	else if (c == 's')
 		n = put_str(va_arg(*args, char *));
 	else if (c == 'i' || c == 'd')
 		n = put_dec_int(va_arg(*args, int));
 	else if (c == 'p')
-		dec_to_hex(va_arg(*args, unsigned long), 'p', &n);
+		ft_put_pointer(va_arg(*args, unsigned long), &n);
 	else if (c == 'u')
 		ft_put_uint(va_arg(*args, unsigned int), &n);
 	else if (c == 'x' || c == 'X')
 		dec_to_hex(va_arg(*args, unsigned int), c, &n);
 	else
-		n = -1;
+		ft_putchar_fd('%', ++n);
 	return (n);
 }

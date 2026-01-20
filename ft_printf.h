@@ -16,6 +16,11 @@
 # include "libft/libft.h"
 # include <stdarg.h>
 
+typedef struct	s_printf
+{
+	size_t	counter;
+}				t_printf;
+
 int	convert(char c, va_list *args);
 int	ft_printf(const char *str, ...);
 

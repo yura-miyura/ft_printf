@@ -38,7 +38,36 @@ int	is_specifier(char c)
 	return (0);
 }
 
-int is_dash()
+int is_dash_zero_dot(char *s, t_format *f)
+{
+	char	c;
+
+	c = *s;
+	if (c == '-')
+	{
+		if (ft_isdigit(*(++s))
+			f->dash = ft_atoi(s);
+		else
+			f->dash = 1;
+	}
+	else if (c == '0')
+	{
+		if (ft_isdigit(*(++s))
+			f->zero= ft_atoi(s);
+		else
+			f->zero = 1;
+	}
+	else if (c == '.')
+	{
+		if (ft_isdigit(*(++s))
+			f->presision = ft_atoi(s);
+		else
+			f->presision = 0;
+	}
+	else
+		return (0)
+	return (c);
+}
 
 int	is_hash_space_plus(char c, t_format *f)
 {

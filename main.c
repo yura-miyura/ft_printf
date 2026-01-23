@@ -3,5 +3,5 @@
 
 int main(void)
 {
-	printf("i1: %i, i2: %i", i1, i2);
+	printf("%.1i", 52);
 }

@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include "libft/libft.h"
 
 t_format	*create_t_format(void)
 {
@@ -24,7 +23,6 @@ t_format	*create_t_format(void)
 	f->space= 0;
 	f->plus = 0;
 	f->specifier = 0;
-
 	return (f);
 }
 
@@ -56,20 +54,19 @@ int	is_flag(char c, t_format *f)
 	return (c);
 }
 
-t_format	*collect_data(char *str)
+void	collect_data(char *str, t_format *f)
 {
-	t_format *f;
-
-	f = create_t_format();
-	while (is_flag(*str, f))
+	if (is_flag(*str, f))
 		str++;
-	while (ft_isdigit(*str))
-		f->width  = f->width * 10 + *str++ - '0';
-	if (*str++ == '.')
+	else if (ft_isdigit(*str))
+	{
+		if (f->precision >= 0)
+			f->precision = f->precision * 10 + *str++ - '0';
+		else
+			f->width  = f->width * 10 + *str++ - '0';
+	}
+	else if (*str++ == '.')
 		f->precision = 0;
-	while (ft_isdigit(*str))
-		f->precision = f->precision * 10 + *str++ - '0';
-	if (is_specifier(*str))
+	else if (is_specifier(*str))
 		f->specifier = *str;
-	return (f);
 }

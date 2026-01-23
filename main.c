@@ -3,5 +3,5 @@
 
 int main(void)
 {
-	printf("%.1i", 52);
+	printf("|%#-6i|\n", 42);
 }

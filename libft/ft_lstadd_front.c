@@ -13,8 +13,8 @@
 #include "libft.h"
 
 // Add to the front of the list
-void	ft_lstadd_front(t_list **lst, t_list *new)
+void	ft_lstadd_front(t_list **lst, t_list *new_n)
 {
-	new->next = *lst;
-	*lst = new;
+	new_n->next = *lst;
+	*lst = new_n;
 }

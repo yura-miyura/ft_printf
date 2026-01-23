@@ -10,7 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#incldue "ft_printf.h"
+#include "ft_printf.h"
+#include "libft/libft.h"
 
 t_format	*create_t_format(void)
 {
@@ -18,7 +19,7 @@ t_format	*create_t_format(void)
 
 	f->dash = 0;
 	f->zero= 0;
-	f->persision = -1;
+	f->precision = -1;
 	f->hash= 0;
 	f->space= 0;
 	f->plus = 0;
@@ -38,40 +39,13 @@ int	is_specifier(char c)
 	return (0);
 }
 
-int is_dash_zero_dot(char *s, t_format *f)
+int	is_flag(char c, t_format *f)
 {
-	char	c;
-
-	c = *s;
 	if (c == '-')
-	{
-		if (ft_isdigit(*(++s))
-			f->dash = ft_atoi(s);
-		else
-			f->dash = 1;
-	}
+		f->dash = 1;
 	else if (c == '0')
-	{
-		if (ft_isdigit(*(++s))
-			f->zero= ft_atoi(s);
-		else
-			f->zero = 1;
-	}
-	else if (c == '.')
-	{
-		if (ft_isdigit(*(++s))
-			f->presision = ft_atoi(s);
-		else
-			f->presision = 0;
-	}
-	else
-		return (0)
-	return (c);
-}
-
-int	is_hash_space_plus(char c, t_format *f)
-{
-	if (c == '#')
+		f->zero = 1;
+	else if (c == '#')
 		f->hash = 1;
 	else if (c == ' ')
 		f->space = 1;
@@ -80,4 +54,22 @@ int	is_hash_space_plus(char c, t_format *f)
 	else
 		return (0);
 	return (c);
+}
+
+t_format	*collect_data(char *str)
+{
+	t_format *f;
+
+	f = create_t_format();
+	while (is_flag(*str, f))
+		str++;
+	while (ft_isdigit(*str))
+		f->width  = f->width * 10 + *str++ - '0';
+	if (*str++ == '.')
+		f->precision = 0;
+	while (ft_isdigit(*str))
+		f->precision = f->precision * 10 + *str++ - '0';
+	if (is_specifier(*str))
+		f->specifier = *str;
+	return (f);
 }

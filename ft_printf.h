@@ -20,12 +20,15 @@ typedef struct	s_format
 {
 	size_t	dash;
 	size_t	zero;
-	int		persicion;
 	size_t	hash;
 	size_t	space;
 	size_t	plus;
+
 	char	specifier;
 
+	int		precision;
+
+	size_t	width;
 	size_t	counter;
 }				t_format;
 

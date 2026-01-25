@@ -12,8 +12,13 @@
 
 #include "ft_printf.h"
 
-void	create_format(t_format *f)
+t_format	*create_format(void)
 {
+	t_format *f;
+
+	f = malloc(sizeof (t_format));
+	if (!f)
+		return (NULL);
 	f->dash = 0;
 	f->zero = 0;
 	f->precision = -1;
@@ -22,6 +27,7 @@ void	create_format(t_format *f)
 	f->plus = 0;
 	f->width = 0;
 	f->specifier = 0;
+	return (f);
 }
 
 // int	is_specifier(char c)
@@ -38,10 +44,7 @@ void	create_format(t_format *f)
 static int	is_flag(char c, t_format *f)
 {
 	if (c == '-')
-	{
 		f->dash = 1;
-		f->width = 1;
-	}
 	else if (c == '0')
 		f->zero = 1;
 	else if (c == '#')
@@ -55,20 +58,26 @@ static int	is_flag(char c, t_format *f)
 	return (c);
 }
 
-const char	*collect_data(const char *str, t_format *f)
+t_format	*collect_data(const char *str, int *i)
 {
-	while (is_flag(*str, f))
-		str++;
-	while (ft_isdigit(*str))
-		f->width  = f->width * 10 + *str++ - '0';
-	if (*str++ == '.')
+	t_format *f;
+	int		index;
+
+	index = *i;
+	f = create_format();
+	while (is_flag(str[index], f))
+		index++;
+	while (ft_isdigit(str[index]))
+		f->width  = f->width * 10 + str[index++] - '0';
+	if (str[index] == '.')
 	{
+		index++;
 		f->precision = 0;
-		while (ft_isdigit(*str))
-			f->precision = f->precision * 10 + *str++ - '0';
+		while (ft_isdigit(str[index]))
+			f->precision = f->precision * 10 + str[index++] - '0';
 	}
-	if (*str)
-		f->specifier = *str;
-	return (str);
+	f->specifier = str[index];
+	*i = index;
+	return (f);
 }
 

@@ -19,7 +19,7 @@ LIBFT_DIR = ./libft
 LIBFT = ${LIBFT_DIR}/libft.a
 
 SRCS = ft_printf.c \
-		ft_printf_utils.c \
+		utils.c \
 		put.c \
 		converters.c \
 		format.c \
@@ -38,7 +38,7 @@ ${OBJS}: %.o: %.c
 
 main: all
 	${CC} ${OFLAGS} -c main.c
-	${CC} ${OFLAGS} main.o -L. -lftprintf -o $@
+	${CC} ${OFLAGS} -g main.o -L. -lftprintf -o $@
 
 cl: fclean
 	make fclean -C ${LIBFT_DIR}

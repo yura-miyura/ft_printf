@@ -34,8 +34,8 @@ int	put_str(char *str, t_format *data);
 
 
 // data collection
-const char	*collect_data(const char *str, t_format *f);
-void	create_format(t_format *f);
+t_format	*collect_data(const char *str, int *i);
+t_format	*create_format(void);
 
 // utils
 int	padding(char c, int size);

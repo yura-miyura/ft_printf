@@ -3,8 +3,9 @@
 
 int main(void)
 {
-	// char *s = NULL;
+	char *s = "hello";
 
-	printf("|%5c|\n", 'c');
-	ft_printf("|%5c|\n", 'c');
+	int n1 = printf("|%10.3s|\n", s);
+	int n2 = ft_printf("|%10.3s|\n", s);
+	printf("1 %i, 2: %i\n", n1, n2);
 }

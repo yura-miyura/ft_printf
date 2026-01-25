@@ -14,28 +14,29 @@
 
 int	ft_printf(const char *str, ...)
 {
+	int			i;
 	int			count;
 	va_list		args;
 	t_format	*data;
 
+	i = 0;
 	count = 0;
-	data = NULL;
 	va_start(args, str);
-	while (*str != '\0')
+	while (str[i] != '\0')
 	{
-		if (*str == '%')
+		if (str[i] == '%')
 		{
-			str++;
-			str = collect_data(str, data);
-			if (data->specifier)
-				count += convert(&args, data);
+			i++;
+			data = collect_data(str, &i);
+			count += convert(&args, data);
+			free(data);
  		}
 		else
 		{
-			ft_putchar_fd(*str, 1);
+			ft_putchar_fd(str[i], 1);
 			count++;
 		}
-		str++;
+		i++;
 	}
 	return (count);
 }

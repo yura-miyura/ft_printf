@@ -3,5 +3,8 @@
 
 int main(void)
 {
-	printf("|%#-6i|\n", 42);
+	// char *s = NULL;
+
+	printf("|%5c|\n", 'c');
+	ft_printf("|%5c|\n", 'c');
 }

@@ -20,25 +20,28 @@ LIBFT = ${LIBFT_DIR}/libft.a
 
 SRCS = ft_printf.c \
 		ft_printf_utils.c \
-		
+		put.c \
+		converters.c \
+		format.c \
+
 OBJS := ${SRCS:.c=.o}
 
 all: ${NAME}
 
-${NAME}: ${OBJS} 
-	make -C ${LIBFT_DIR} 
+${NAME}: ${OBJS}
+	make -C ${LIBFT_DIR}
 	cp ${LIBFT} ${NAME}
 	${AR} ${NAME} ${OBJS}
 
 ${OBJS}: %.o: %.c
 	${CC} ${OFLAGS} -c $< -o $@
-	
+
 main: all
 	${CC} ${OFLAGS} -c main.c
 	${CC} ${OFLAGS} main.o -L. -lftprintf -o $@
 
 cl: fclean
-	make fclean -C ${LIBFT_DIR} 
+	make fclean -C ${LIBFT_DIR}
 	${DEL} main.o main
 
 fclean: clean

@@ -6,96 +6,100 @@
 /*   By: yuriiartymicloud.com <yuriiartymicloud.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/05 16:14:38 by yuriiartymi       #+#    #+#             */
-/*   Updated: 2025/12/06 15:51:26 by yuriiartymi      ###   ########.fr       */
+/*   Updated: 2026/01/25 16:29:41 by yartym           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static void dec_to_hex(unsigned long n, char c, int *count)
+int	padding(char c, int size)
 {
-	char *hex;
-
-	if (c == 'x' || c == 'p')
-		hex = "0123456789abcdef";
-	else if (c == 'X')
-		hex = "0123456789ABCDEF";
-	else
-		return;
-	if (n >= 16)
-		dec_to_hex(n / 16, c, count);
-	if (n < 16 && c == 'p') {
-		ft_putstr_fd("0x", 1);
-		*count += 2;
-	}
-	ft_putchar_fd(hex[n % 16], 1);
-	(*count)++;
-}
-
-static void ft_put_uint(unsigned int n, int *count)
-{
-	if (n >= 10)
-		ft_put_uint(n / 10, count);
-	ft_putchar_fd((n % 10 + '0'), 1);
-	(*count)++;
-}
-
-static int put_str(char *str)
-{
-	int len;
-
-	if (str == NULL)
-		str = "(null)";
-	ft_putstr_fd(str, 1);
-	len = ft_strlen(str);
-	return (len);
-}
-
-static int put_dec_int(int n)
-{
-	char *str;
-	int len;
-
-	str = ft_itoa(n);
-	ft_putstr_fd(str, 1);
-	len = ft_strlen(str);
-	free(str);
-	return (len);
-}
-
-static void	ft_put_pointer(unsigned long number, int *count)
-{
-	if (number > 0)
-	{
-		ft_putstr_fd("0x", 1);
-		*count += 2;
-		dec_to_hex(number, 'x', count);
-	}
-	else
-	{
-		ft_putstr_fd("(nil)", 1);
-		*count += 5;
-	}
-}
-
-int convert(char c, va_list *args)
-{
-	int n;
+	int	n;
 
 	n = 0;
+	while (size)
+	{
+		ft_putchar_fd(c, 1);
+		size--;
+		n++;
+	}
+	return (n);
+}
+
+// void	put_nil(t_format *data)
+// {
+// 	ft_putstr_fd("(nil)", 1);
+// 	data->length = 5;
+// }
+
+// void put_u_int(unsigned int n, int *count)
+// {
+// 	if (n >= 10)
+// 		ft_put_uint(n / 10, count);
+// 	ft_putchar_fd((n % 10 + '0'), 1);
+// 	(*count)++;
+// }
+//
+// int put_str(char *str)
+// {
+// 	int len;
+//
+// 	if (str == NULL)
+// 		str = "(null)";
+// 	ft_putstr_fd(str, 1);
+// 	len = ft_strlen(str);
+// 	return (len);
+// }
+//
+// int	put_dec_int(int n)
+// {
+// 	char *str;
+// 	int len;
+//
+// 	str = ft_itoa(n);
+// 	ft_putstr_fd(str, 1);
+// 	len = ft_strlen(str);
+// 	free(str);
+// 	return (len);
+// }
+//
+// void	ft_put_pointer(unsigned long number, int *count)
+// {
+// 	if (number > 0)
+// 	{
+// 		ft_putstr_fd("0x", 1);
+// 		*count += 2;
+// 		dec_to_hex(number, 'x', count);
+// 	}
+// 	else
+// 	{
+// 		ft_putstr_fd("(nil)", 1);
+// 		*count += 5;
+// 	}
+// }
+
+int	convert(va_list *args, t_format *data)
+{
+	int		n;
+	char	c;
+
+	n = 0;
+	c = data->specifier;
 	if (c == 'c')
-		ft_putchar_fd(va_arg(*args, int), ++n);
+		n = put_char(va_arg(*args, int), data);
 	else if (c == 's')
-		n = put_str(va_arg(*args, char *));
-	else if (c == 'i' || c == 'd')
-		n = put_dec_int(va_arg(*args, int));
-	else if (c == 'p')
-		ft_put_pointer(va_arg(*args, unsigned long), &n);
-	else if (c == 'u')
-		ft_put_uint(va_arg(*args, unsigned int), &n);
-	else if (c == 'x' || c == 'X')
-		dec_to_hex(va_arg(*args, unsigned int), c, &n);
+		n = put_str(va_arg(*args, char *), data);
+	// else if (c == 'i' || c == 'd')
+	// 	n = put_decint(va_arg(*args, int), f);
+	// else if (c == 'u')
+	// 	n = put_uint(va_arg(*args, unsigned int), f);
+	// else if (c == 'p')
+	// 	n = put_pointer(va_arg(*args, unsigned long), f);
+	// else if (c == 'x' || c == 'X')
+	// 	n = put_hex(va_arg(*args, unsigned int), f);
+	// else if (c == '%')
+	// 	n = put_char('%', f);
 	else
-		ft_putchar_fd('%', ++n);
+		n = put_char(c, data);
 	return (n);
 }

@@ -3,9 +3,8 @@
 
 int main(void)
 {
-	char *s = NULL;
-
-	int n1 = printf("|%05x|\n", 42);
-	int n2 = ft_printf("|%10.3p|\n", s);
+	char *t = NULL;
+	int n1 = printf("|%-10p|\n", t);
+	int n2 = ft_printf("|%-10p|\n", t);
 	printf("1 %i, 2: %i\n", n1, n2);
 }

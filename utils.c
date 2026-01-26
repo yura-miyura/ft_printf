@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#include "libft/libft.h"
 
 int	padding(char c, int size)
 {
@@ -26,17 +27,41 @@ int	padding(char c, int size)
 	return (n);
 }
 
-void	dec_to_hex(unsigned long n, int *count, t_format *data)
+static char	*reverse_buffer(char *buffer, int i)
 {
-	char *hex;
+	int		j;
+	char	tmp;
+	char	*reversed;
 
-	hex = "0123456789abcdef";
-	if (data->specifier == 'X')
-		hex = "0123456789ABCDEF";
-	if (n >= 16)
-		dec_to_hex(n / 16, count, data);
-	ft_putchar_fd(hex[n % 16], 1);
-	(*count)++;
+	j = -1;
+	while (--i > ++j)
+	{
+		tmp = buffer[j];
+		buffer[j] = buffer[i];
+		buffer[i] = tmp;
+	}
+	reversed = ft_strdup(buffer);
+	return (reversed);
+}
+
+char	*dec_to_hex(unsigned long n, char c)
+{
+	char	*base_hex;
+	char	buffer[9];
+	int		i;
+
+	i = 0;
+	ft_bzero(buffer, 9);
+	base_hex = "0123456789abcdef";
+	if (c == 'X')
+		base_hex = "0123456789ABCDEF";
+	while (n > 0)
+	{
+		buffer[i++] = base_hex[n % 16];
+		n /= 16;
+	}
+	base_hex = reverse_buffer(buffer, i);
+	return (base_hex);
 }
 
 int	space_plus(t_format *data)
@@ -138,8 +163,8 @@ int	convert(va_list *args, t_format *data)
 	// 	n = put_decint(va_arg(*args, int), f);
 	// else if (c == 'u')
 	// 	n = put_uint(va_arg(*args, unsigned int), f);
-	// else if (c == 'p')
-	// 	n = put_pointer(va_arg(*args, unsigned long), f);
+	else if (c == 'p')
+		n = put_pointer(va_arg(*args, unsigned long), data);
 	// else if (c == 'x' || c == 'X')
 	// 	n = put_hex(va_arg(*args, unsigned int), f);
 	// else if (c == '%')

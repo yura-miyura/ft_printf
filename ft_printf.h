@@ -31,6 +31,7 @@ typedef struct	s_format
 // put.c
 int	put_char(char c, t_format *data);
 int	put_str(char *str, t_format *data);
+int	put_pointer(unsigned long n, t_format *data);
 
 
 // data collection
@@ -39,7 +40,9 @@ t_format	*create_format(void);
 
 // utils
 int		padding(char c, int size);
-void	dec_to_hex(unsigned long n, int *count, t_format *data);
+char	*dec_to_hex(unsigned long n, char c);
+int		space_plus(t_format *data);
+int		hex_prefix(t_format *data);
 
 int	convert(va_list *args, t_format *data);
 int	ft_printf(const char *str, ...);

@@ -30,27 +30,6 @@
 // 	(data->counter)++;
 // }
 //
-// void	ft_puthex_prefix(t_format *data)
-// {
-// 	char	*prefix;
-// 	char	c;
-// 	int		add;
-//
-// 	add = 0;
-// 	prefix = NULL;
-// 	c = data->specifier;
-// 	if ((data->hash && c == 'x') || c == 'p')
-// 	{
-// 		prefix = "0x"; add = 2;
-// 	}
-// 	else if (data->hash && c == 'X')
-// 	{
-// 		prefix = "0x";
-// 		add = 2;
-// 	}
-// 	ft_putstr_fd(prefix, 1);
-// 	data->counter += add;
-// }
 //
 // void	ft_put_pointer(unsigned long number, t_format *data)
 // {

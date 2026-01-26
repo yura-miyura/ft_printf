@@ -43,13 +43,22 @@ int	put_str(char *str, t_format *data)
 	if (!data->dash && width > 0)
 		n += padding(' ', width);
 	while (len--)
+	{
 		ft_putchar_fd(*str++, 1);
+		n++;
+	}
 	if (data->dash && width > 0)
 		n += padding(' ', width);
 	return (n);
 }
 
-// int	put_pointer
+int	put_pointer(unsigned long n, t_format *data)
+{
+	:
+
+
+
+}
 //
 // int	put_decint
 //

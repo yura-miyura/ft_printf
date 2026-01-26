@@ -38,7 +38,8 @@ t_format	*collect_data(const char *str, int *i);
 t_format	*create_format(void);
 
 // utils
-int	padding(char c, int size);
+int		padding(char c, int size);
+void	dec_to_hex(unsigned long n, int *count, t_format *data);
 
 int	convert(va_list *args, t_format *data);
 int	ft_printf(const char *str, ...);

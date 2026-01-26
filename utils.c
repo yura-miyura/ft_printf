@@ -26,6 +26,36 @@ int	padding(char c, int size)
 	return (n);
 }
 
+void	dec_to_hex(unsigned long n, int *count, t_format *data)
+{
+	char *hex;
+
+	hex = "0123456789abcdef";
+	if (data->specifier == 'X')
+		hex = "0123456789ABCDEF";
+	if (n >= 16)
+		dec_to_hex(n / 16, count, data);
+	ft_putchar_fd(hex[n % 16], 1);
+	(*count)++;
+}
+
+int	hex_prefix(t_format *data)
+{
+	char	*prefix;
+
+	add = 2;
+	prefix = NULL;
+	c = data->specifier;
+	if ((data->hash && c == 'x') || c == 'p')
+		prefix = "0x";
+	else if (data->hash && c == 'X')
+		prefix = "0X";
+	else
+		add = 0;
+	ft_putstr_fd(prefix, 1);
+	return (add);
+}
+
 // void	put_nil(t_format *data)
 // {
 // 	ft_putstr_fd("(nil)", 1);

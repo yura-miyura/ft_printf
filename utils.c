@@ -27,41 +27,29 @@ int	padding(char c, int size)
 	return (n);
 }
 
-static char	*reverse_buffer(char *buffer, int i)
+int	hex_len(unsigned long n)
 {
-	int		j;
-	char	tmp;
-	char	*reversed;
+	int len;
 
-	j = -1;
-	while (--i > ++j)
+	len = 0;
+	while (n > 0)
 	{
-		tmp = buffer[j];
-		buffer[j] = buffer[i];
-		buffer[i] = tmp;
+		n /= 16;
+		len++;
 	}
-	reversed = ft_strdup(buffer);
-	return (reversed);
+	return (len);
 }
 
-char	*dec_to_hex(unsigned long n, char c)
+void	dec_to_hex(unsigned long n, char c)
 {
 	char	*base_hex;
-	char	buffer[9];
-	int		i;
 
-	i = 0;
-	ft_bzero(buffer, 9);
 	base_hex = "0123456789abcdef";
 	if (c == 'X')
 		base_hex = "0123456789ABCDEF";
-	while (n > 0)
-	{
-		buffer[i++] = base_hex[n % 16];
-		n /= 16;
-	}
-	base_hex = reverse_buffer(buffer, i);
-	return (base_hex);
+	if (n >= 16)
+		dec_to_hex(n / 16, c);
+	ft_putchar_fd(base_hex[n % 16], 1);
 }
 
 int	space_plus(t_format *data)

@@ -40,9 +40,10 @@ t_format	*create_format(void);
 
 // utils
 int		padding(char c, int size);
-char	*dec_to_hex(unsigned long n, char c);
+void	dec_to_hex(unsigned long n, char c);
 int		space_plus(t_format *data);
 int		hex_prefix(t_format *data);
+int		hex_len(unsigned long n);
 
 int	convert(va_list *args, t_format *data);
 int	ft_printf(const char *str, ...);

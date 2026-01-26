@@ -55,28 +55,27 @@ int	put_str(char *str, t_format *data)
 int	put_pointer(unsigned long n, t_format *data)
 {
 	int		count;
-	char	*hex;
-	int		len;
 	int		width;
+	int		len;
 
 	count = 0;
 	if (n)
-		count = hex_prefix(data);
-	hex = dec_to_hex(n, data->specifier);
-	len = ft_strlen(hex);
+	{
+		len = hex_len(n);
+		len += hex_prefix(data);
+	}
+	else
+		len = 5;
 	count += len;
 	width = data->width - len;
 	if (!data->dash && width > 0)
-	{
-		if (!data->zero)
-			n += padding(' ', width);
-		else
-			n += padding('0', width);
-	}
-	ft_putstr_fd(hex, 1);
+		count += padding(' ', width);
+	if (n)
+		dec_to_hex(n, data->specifier);
+	else
+		ft_putstr_fd("(nil)", 1);
 	if (data->dash && width > 0)
-		n += padding(' ', width);
-	free(hex);
+		count += padding(' ', width);
 	return (count);
 }
 

@@ -39,9 +39,24 @@ void	dec_to_hex(unsigned long n, int *count, t_format *data)
 	(*count)++;
 }
 
+int	space_plus(t_format *data)
+{
+	if (data->plus || data->space)
+	{
+		if (data->plus)
+			ft_putchar_fd('+', 1);
+		else
+			ft_putchar_fd(' ', 1);
+		return (1);
+	}
+	return (0);
+}
+
 int	hex_prefix(t_format *data)
 {
 	char	*prefix;
+	char	c;
+	int		add;
 
 	add = 2;
 	prefix = NULL;

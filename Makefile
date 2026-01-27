@@ -6,7 +6,7 @@
 #    By: yuriiartymicloud.com <yuriiartymicloud.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/11/19 21:34:31 by yuriiartymi       #+#    #+#              #
-#    Updated: 2025/12/05 21:07:20 by yuriiartymi      ###   ########.fr        #
+#    Updated: 2026/01/27 13:55:55 by yartym           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,7 @@ SRCS = ft_printf.c \
 		put.c \
 		converters.c \
 		format.c \
+		padding.c \
 
 OBJS := ${SRCS:.c=.o}
 

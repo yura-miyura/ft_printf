@@ -6,7 +6,7 @@
 /*   By: yuriiartymicloud.com <yuriiartymicloud.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/05 17:00:01 by yuriiartymi       #+#    #+#             */
-/*   Updated: 2026/01/25 16:41:19 by yartym           ###   ########.fr       */
+/*   Updated: 2026/01/27 14:27:53 by yartym           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,22 +28,29 @@ typedef struct	s_format
 	char	specifier;
 }				t_format;
 
-// put.c
+// put
 int	put_char(char c, t_format *data);
 int	put_str(char *str, t_format *data);
 int	put_pointer(unsigned long n, t_format *data);
+int	put_decint(int n, t_format *data);
 
 
 // data collection
 t_format	*collect_data(const char *str, int *i);
 t_format	*create_format(void);
 
-// utils
+// padding
+int		zero_padding(int len, int width, t_format *data);
+int		width_padding(int width, t_format *data);
+int		dash_padding(int width, t_format *data);
 int		padding(char c, int size);
+
+// utils
 void	dec_to_hex(unsigned long n, char c);
-int		space_plus(t_format *data);
+int		space_plus_minus(int n, t_format *data);
 int		hex_prefix(t_format *data);
 int		hex_len(unsigned long n);
+void	put_num_pos(int n);
 
 int	convert(va_list *args, t_format *data);
 int	ft_printf(const char *str, ...);

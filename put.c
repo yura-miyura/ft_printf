@@ -6,7 +6,7 @@
 /*   By: yartym <yartym@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/25 14:42:01 by yartym            #+#    #+#             */
-/*   Updated: 2026/01/25 16:38:31 by yartym           ###   ########.fr       */
+/*   Updated: 2026/01/27 14:34:28 by yartym           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,26 +80,29 @@ int	put_pointer(unsigned long n, t_format *data)
 }
 
 
-// int	put_decint(int n, t_format *data)
-// {
-// 	char	*s_num;
-// 	int		count;
-// 	int		len;
-//
-// 	count = 0;
-// 	s_num = ft_itoa(n);
-// 	len = ft_strlen(s_num);
-// 	if (n > 0 && (data->plus || data->space))
-// 	{
-// 		if (data->plus)
-// 			ft_putchar_fd('+', 1);
-// 		else if(data->space)
-// 			ft_putchar_fd(' ', 1);
-// 		n++;
-// 	}
-//
-//
-// }
+int	put_decint(int n, t_format *data)
+{
+	int		count;
+	int		width;
+	int		len;
+
+	count = 0;
+	len = ft_strlen(ft_itoa(n));
+	if (n < 0)
+		len--;
+	count += len;
+	width = data->width - len;
+	if (data->precision >= 0)
+		width -= data->precision - len;
+	if (n >= 0 && (data->plus || data->space))
+		width -= 1;
+	count += width_padding(width, data);
+	count += space_plus_minus(n, data);
+	count += zero_padding(len, width, data);
+	put_num_pos(n);
+	count += dash_padding(width, data);
+	return (count);
+}
 
 // int	put_uint
 //

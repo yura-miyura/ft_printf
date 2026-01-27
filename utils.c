@@ -17,6 +17,8 @@ int	hex_len(unsigned long n)
 	int len;
 
 	len = 0;
+	if (n == 0)
+		len = 1;
 	while (n > 0)
 	{
 		n /= 16;
@@ -51,10 +53,7 @@ int	space_plus_minus(int n, t_format *data)
 		i = 1;
 	}
 	else if (n < 0)
-	{
 		ft_putchar_fd('-', 1);
-		i = 1;
-	}
 	return (i);
 }
 
@@ -99,7 +98,12 @@ int	int_len(int n)
 
 	count = 0;
 	if (n < 0)
+	{
+		if (n == INT_MIN)
+			return (11);
 		n *= -1;
+		count++;
+	}
 	else if (n == 0)
 		count++;
 	while (n > 0)

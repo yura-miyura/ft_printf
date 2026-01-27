@@ -91,7 +91,7 @@ int	put_d_i(int n, t_format *data)
 	width = data->width - len;
 	if (data->precision >= len)
 		width -= data->precision - len;
-	if (n < 0 || data->plus || data->space)
+	if (n >= 0 && (data->plus || data->space))
 		width--;
 	count += width_padding(width, data);
 	count += space_plus_minus(n, data);
@@ -119,4 +119,27 @@ int	put_u(unsigned int n, t_format *data)
 	count += dash_padding(width, data);
 	return (count);
 }
-// int	put_hex
+int	put_hex(unsigned int n, t_format *data)
+{
+	int		count;
+	int		width;
+	int		len;
+
+	count = 0;
+	len = hex_len(n);
+	width = data->width - len;
+	if (n && data->hash)
+	{
+		width -= 2;
+		count += 2;
+	}
+	count += len;
+	if (data->precision >= len)
+		width -= data->precision - len;
+	count += width_padding(width, data);
+	hex_prefix(data);
+	count += zero_padding(len, width, data);
+	dec_to_hex(n, data->specifier);
+	count += dash_padding(width, data);
+	return (count);
+}

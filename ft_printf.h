@@ -34,6 +34,7 @@ int	put_str(char *str, t_format *data);
 int	put_pointer(unsigned long n, t_format *data);
 int	put_d_i(int n, t_format *data);
 int	put_u(unsigned int n, t_format *data);
+int	put_hex(unsigned int n, t_format *data);
 
 
 // data collection

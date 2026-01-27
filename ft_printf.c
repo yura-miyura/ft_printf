@@ -58,10 +58,10 @@ int	convert(va_list *args, t_format *data)
 		n = put_u(va_arg(*args, unsigned int), data);
 	else if (c == 'p')
 		n = put_pointer(va_arg(*args, unsigned long), data);
-	// else if (c == 'x' || c == 'X')
-	// 	n = put_hex(va_arg(*args, unsigned int), f);
-	// else if (c == '%')
-	// 	n = put_char('%', f);
+	else if (c == 'x' || c == 'X')
+		n = put_hex(va_arg(*args, unsigned int), data);
+	else if (c == '%')
+		n = put_char('%', data);
 	else
 		n = put_char(c, data);
 	return (n);

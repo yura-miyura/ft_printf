@@ -6,7 +6,7 @@
 /*   By: yartym <yartym@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/25 14:42:01 by yartym            #+#    #+#             */
-/*   Updated: 2026/01/27 14:34:28 by yartym           ###   ########.fr       */
+/*   Updated: 2026/01/27 14:38:51 by yartym           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,9 +85,12 @@ int	put_decint(int n, t_format *data)
 	int		count;
 	int		width;
 	int		len;
+	char	*nbr;
 
 	count = 0;
-	len = ft_strlen(ft_itoa(n));
+	nbr = ft_itoa(n);
+	len = ft_strlen(nbr);
+	free(nbr);
 	if (n < 0)
 		len--;
 	count += len;

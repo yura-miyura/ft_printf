@@ -112,28 +112,3 @@ int	padding(char c, int size)
 // 	}
 // }
 
-int	convert(va_list *args, t_format *data)
-{
-	int		n;
-	char	c;
-
-	n = 0;
-	c = data->specifier;
-	if (c == 'c')
-		n = put_char(va_arg(*args, int), data);
-	else if (c == 's')
-		n = put_str(va_arg(*args, char *), data);
-	else if (c == 'i' || c == 'd')
-		n = put_decint(va_arg(*args, int), data);
-	// else if (c == 'u')
-	// 	n = put_uint(va_arg(*args, unsigned int), f);
-	else if (c == 'p')
-		n = put_pointer(va_arg(*args, unsigned long), data);
-	// else if (c == 'x' || c == 'X')
-	// 	n = put_hex(va_arg(*args, unsigned int), f);
-	// else if (c == '%')
-	// 	n = put_char('%', f);
-	else
-		n = put_char(c, data);
-	return (n);
-}

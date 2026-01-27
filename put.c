@@ -79,34 +79,44 @@ int	put_pointer(unsigned long n, t_format *data)
 	return (count);
 }
 
-
-int	put_decint(int n, t_format *data)
+int	put_d_i(int n, t_format *data)
 {
 	int		count;
 	int		width;
 	int		len;
-	char	*nbr;
 
 	count = 0;
-	nbr = ft_itoa(n);
-	len = ft_strlen(nbr);
-	free(nbr);
-	if (n < 0)
-		len--;
+	len = int_len(n);
 	count += len;
 	width = data->width - len;
-	if (data->precision >= 0)
+	if (data->precision >= len)
 		width -= data->precision - len;
-	if (n >= 0 && (data->plus || data->space))
-		width -= 1;
+	if (n < 0 || data->plus || data->space)
+		width--;
 	count += width_padding(width, data);
 	count += space_plus_minus(n, data);
 	count += zero_padding(len, width, data);
-	put_num_pos(n);
+	put_int_pos(n);
 	count += dash_padding(width, data);
 	return (count);
 }
 
-// int	put_uint
-//
+int	put_u(unsigned int n, t_format *data)
+{
+	int		count;
+	int		width;
+	int		len;
+
+	count = 0;
+	len = u_int_len(n);
+	count += len;
+	width = data->width - len;
+	if (data->precision >= len)
+		width -= data->precision - len;
+	count += width_padding(width, data);
+	count += zero_padding(len, width, data);
+	put_u_int(n);
+	count += dash_padding(width, data);
+	return (count);
+}
 // int	put_hex

@@ -77,7 +77,47 @@ int	hex_prefix(t_format *data)
 	return (add);
 }
 
-void	put_num_pos(int n)
+int	u_int_len(unsigned int n)
+{
+	int count;
+
+	count = 0;
+	if (n == 0)
+		count++;
+	while (n > 0)
+	{
+		n /= 10;
+		count++;
+	}
+	return (count);
+}
+
+
+int	int_len(int n)
+{
+	int count;
+
+	count = 0;
+	if (n < 0)
+		n *= -1;
+	else if (n == 0)
+		count++;
+	while (n > 0)
+	{
+		n /= 10;
+		count++;
+	}
+	return (count);
+}
+
+void	put_u_int(unsigned int n)
+{
+	if (n >= 10)
+		put_u_int(n/10);
+	ft_putchar_fd(n % 10 + '0', 1);
+}
+
+void	put_int_pos(int n)
 {
 	if (n < 0)
 	{

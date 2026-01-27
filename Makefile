@@ -21,7 +21,6 @@ LIBFT = ${LIBFT_DIR}/libft.a
 SRCS = ft_printf.c \
 		utils.c \
 		put.c \
-		converters.c \
 		format.c \
 		padding.c \
 

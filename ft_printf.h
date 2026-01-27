@@ -32,7 +32,8 @@ typedef struct	s_format
 int	put_char(char c, t_format *data);
 int	put_str(char *str, t_format *data);
 int	put_pointer(unsigned long n, t_format *data);
-int	put_decint(int n, t_format *data);
+int	put_d_i(int n, t_format *data);
+int	put_u(unsigned int n, t_format *data);
 
 
 // data collection
@@ -50,7 +51,10 @@ void	dec_to_hex(unsigned long n, char c);
 int		space_plus_minus(int n, t_format *data);
 int		hex_prefix(t_format *data);
 int		hex_len(unsigned long n);
-void	put_num_pos(int n);
+void	put_int_pos(int n);
+int		int_len(int n);
+int		u_int_len(unsigned int n);
+void	put_u_int(unsigned int n);
 
 int	convert(va_list *args, t_format *data);
 int	ft_printf(const char *str, ...);

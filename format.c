@@ -6,19 +6,15 @@
 /*   By: yartym <yartym@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/23 07:17:15 by yartym            #+#    #+#             */
-/*   Updated: 2026/01/25 16:44:27 by yartym           ###   ########.fr       */
+/*   Updated: 2026/01/28 09:44:21 by yartym           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-t_format	*create_format(void)
+void	reset_struct(t_format *f)
 {
-	t_format *f;
-
-	f = malloc(sizeof (t_format));
-	if (!f)
-		return (NULL);
+	ft_bzero(f,	sizeof(t_format));
 	f->dash = 0;
 	f->zero = 0;
 	f->precision = -1;
@@ -27,44 +23,14 @@ t_format	*create_format(void)
 	f->plus = 0;
 	f->width = 0;
 	f->specifier = 0;
-	return (f);
 }
 
-// int	is_specifier(char c)
-// {
-// 	char *specifiers;
-//
-// 	specifiers = "cspiduxX%";
-// 	while (*specifiers)
-// 		if (c == *(specifiers++))
-// 			return (c);
-// 	return (0);
-// }
-
-static int	is_flag(char c, t_format *f)
+void	parse_format(const char *str, int *i, t_format *f)
 {
-	if (c == '-')
-		f->dash = 1;
-	else if (c == '0')
-		f->zero = 1;
-	else if (c == '#')
-		f->hash = 1;
-	else if (c == ' ')
-		f->space = 1;
-	else if (c == '+')
-		f->plus = 1;
-	else
-		return (0);
-	return (c);
-}
-
-t_format	*collect_data(const char *str, int *i)
-{
-	t_format *f;
 	int		index;
 
 	index = *i;
-	f = create_format();
+	reset_struct(f);
 	while (is_flag(str[index], f))
 		index++;
 	while (ft_isdigit(str[index]))
@@ -78,6 +44,45 @@ t_format	*collect_data(const char *str, int *i)
 	}
 	f->specifier = str[index];
 	*i = index;
-	return (f);
+}
+
+int	space_plus_minus(int n, t_format *data)
+{
+	int i;
+
+	i = 0;
+	if (n >= 0 && (data->plus || data->space))
+	{
+		if (data->plus)
+			ft_putchar_fd('+', 1);
+		else
+			ft_putchar_fd(' ', 1);
+		i = 1;
+	}
+	else if (n < 0)
+	{
+		ft_putchar_fd('-', 1);
+		i = 1;
+	}
+	return (i);
+}
+
+int	hex_prefix(t_format *data)
+{
+	char	*prefix;
+	char	c;
+	int		add;
+
+	add = 2;
+	prefix = NULL;
+	c = data->specifier;
+	if ((data->hash && c == 'x') || c == 'p')
+		prefix = "0x";
+	else if (data->hash && c == 'X')
+		prefix = "0X";
+	else
+		add = 0;
+	ft_putstr_fd(prefix, 1);
+	return (add);
 }
 

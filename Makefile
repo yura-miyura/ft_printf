@@ -6,7 +6,7 @@
 #    By: yuriiartymicloud.com <yuriiartymicloud.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/11/19 21:34:31 by yuriiartymi       #+#    #+#              #
-#    Updated: 2026/01/27 13:55:55 by yartym           ###   ########.fr        #
+#    Updated: 2026/01/28 08:59:15 by yartym           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,10 +19,12 @@ LIBFT_DIR = ./libft
 LIBFT = ${LIBFT_DIR}/libft.a
 
 SRCS = ft_printf.c \
-		utils.c \
+		len.c \
+		pnt.c \
 		put.c \
 		format.c \
 		padding.c \
+		is.c \
 
 OBJS := ${SRCS:.c=.o}
 

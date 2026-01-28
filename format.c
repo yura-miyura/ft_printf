@@ -25,11 +25,21 @@ void	reset_struct(t_format *f)
 	f->specifier = 0;
 }
 
+static int	is_specifier(char c)
+{
+	char	*specifiers;
+
+	specifiers = "cspiduxX%";
+	while (*specifiers && *specifiers != c)
+		specifiers++;
+	return (*specifiers == c);
+}
+
 void	parse_format(const char *str, int *i, t_format *f)
 {
 	int	index;
 
-	index = *i;
+	index = *i + 1;
 	reset_struct(f);
 	while (is_flag(str[index], f))
 		index++;
@@ -43,7 +53,8 @@ void	parse_format(const char *str, int *i, t_format *f)
 			f->precision = f->precision * 10 + str[index++] - '0';
 	}
 	f->specifier = str[index];
-	*i = index;
+	if (is_specifier(str[index]))
+		*i = index;
 }
 
 int	space_plus_minus(int n, t_format *data)

@@ -29,11 +29,11 @@ int	put_char(char c, t_format *data)
 
 int	put_str(char *str, t_format *data)
 {
-	int	n;
+	int	count;
 	int	len;
 	int	width;
 
-	n = 0;
+	count = 0;
 	if (!str)
 	{
 		if (data->precision < 0 || data->precision > 5)
@@ -46,15 +46,13 @@ int	put_str(char *str, t_format *data)
 		len = data->precision;
 	width = data->width - len;
 	if (!data->dash && width > 0)
-		n += padding(' ', width);
+		count += padding(' ', width);
+	count += len;
 	while (len--)
-	{
 		ft_putchar_fd(*str++, 1);
-		n++;
-	}
 	if (data->dash && width > 0)
-		n += padding(' ', width);
-	return (n);
+		count += padding(' ', width);
+	return (count);
 }
 
 int	put_pointer(unsigned long n, t_format *data)
@@ -64,13 +62,9 @@ int	put_pointer(unsigned long n, t_format *data)
 	int		len;
 
 	count = 0;
+	len = 5;
 	if (n)
-	{
-		len = hex_len(n);
-		len += 2;
-	}
-	else
-		len = 5;
+		len = hex_len(n) + 2;
 	count += len;
 	width = data->width - len;
 	if (!data->dash && width > 0)
@@ -93,9 +87,8 @@ int	put_number(long n, t_format *data)
 	int		width;
 	int		len;
 
-	count = 0;
 	len = len_number(n, data);
-	count += len;
+	count = len;
 	width = data->width - len;
 	if (is_x(data) && n && data->hash)
 	{
@@ -116,4 +109,3 @@ int	put_number(long n, t_format *data)
 	count += dash_padding(width, data);
 	return (count);
 }
-

@@ -14,7 +14,7 @@
 
 int	u_int_len(unsigned int n)
 {
-	int count;
+	int	count;
 
 	count = 0;
 	if (n == 0)
@@ -29,7 +29,7 @@ int	u_int_len(unsigned int n)
 
 int	int_len(int n)
 {
-	int count;
+	int	count;
 
 	count = 0;
 	if (n < 0)
@@ -50,7 +50,7 @@ int	int_len(int n)
 
 int	hex_len(unsigned long n)
 {
-	int len;
+	int	len;
 
 	len = 0;
 	if (n == 0)
@@ -79,4 +79,3 @@ int	len_number(long n, t_format *data)
 	}
 	return (len);
 }
-

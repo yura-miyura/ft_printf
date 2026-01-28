@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#include "libft/libft.h"
 
 int	ft_printf(const char *str, ...)
 {
@@ -18,23 +19,22 @@ int	ft_printf(const char *str, ...)
 	int			count;
 	va_list		args;
 	t_format	data;
+	int			add;
 
 	i = 0;
 	count = 0;
 	va_start(args, str);
 	while (str[i] != '\0')
 	{
+		add = 1;
 		if (str[i] == '%')
 		{
-			i++;
 			parse_format(str, &i, &data);
-			count += convert(&args, &data);
+			add = convert(&args, &data);
 		}
 		else
-		{
 			ft_putchar_fd(str[i], 1);
-			count++;
-		}
+		count += add;
 		i++;
 	}
 	return (count);
@@ -45,7 +45,7 @@ int	convert(va_list *args, t_format *data)
 	int		n;
 	char	c;
 
-	n = 0;
+	n = 1;
 	c = data->specifier;
 	if (c == 'c')
 		n = put_char(va_arg(*args, int), data);
@@ -60,6 +60,6 @@ int	convert(va_list *args, t_format *data)
 	else if (c == '%')
 		n = put_char('%', data);
 	else
-		n = put_char(c, data);
+		ft_putchar_fd('%', 1);
 	return (n);
 }

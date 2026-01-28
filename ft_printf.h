@@ -6,7 +6,7 @@
 /*   By: yuriiartymicloud.com <yuriiartymicloud.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/05 17:00:01 by yuriiartymi       #+#    #+#             */
-/*   Updated: 2026/01/28 09:51:18 by yartym           ###   ########.fr       */
+/*   Updated: 2026/01/28 10:56:54 by yartym           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ int	is_flag(char c, t_format *f);
 int	is_d_i(t_format *data);
 int	is_x_X(t_format *data);
 int	is_space_plus_minus(int n, t_format *data);
+int	is_zero_with_flags(long n, t_format *data);
 
 //pnt
 void	pnt_hex(unsigned long n, char c);

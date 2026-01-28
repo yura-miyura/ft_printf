@@ -6,7 +6,7 @@
 /*   By: yartym <yartym@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/28 08:32:32 by yartym            #+#    #+#             */
-/*   Updated: 2026/01/28 09:43:55 by yartym           ###   ########.fr       */
+/*   Updated: 2026/01/28 11:06:43 by yartym           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	int_len(int n)
 	if (n < 0)
 	{
 		if (n == INT_MIN)
-			return (11);
+			return (10);
 		n *= -1;
 	}
 	else if (n == 0)
@@ -63,17 +63,20 @@ int	hex_len(unsigned long n)
 	return (len);
 }
 
-int len_number(long n, t_format *data)
+int	len_number(long n, t_format *data)
 {
 	int	len;
 
 	len = 0;
-	if (is_d_i(data))
-		len = int_len(n);
-	else if (is_x_X(data))
-		len = hex_len(n);
-	else
-		len = u_int_len(n);
+	if (n > 0 || !is_zero_with_flags(n, data))
+	{
+		if (is_d_i(data))
+			len = int_len(n);
+		else if (is_x_X(data))
+			len = hex_len(n);
+		else if (data->specifier == 'u')
+			len = u_int_len(n);
+	}
 	return (len);
 }
 

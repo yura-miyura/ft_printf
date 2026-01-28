@@ -6,7 +6,7 @@
 /*   By: yartym <yartym@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/25 14:42:01 by yartym            #+#    #+#             */
-/*   Updated: 2026/01/28 09:50:28 by yartym           ###   ########.fr       */
+/*   Updated: 2026/01/28 11:19:50 by yartym           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,12 @@ int	put_str(char *str, t_format *data)
 
 	n = 0;
 	if (!str)
-		str = "(null)";
+	{
+		if(data->precision < 0 || data->precision > 5)
+			str = "(null)";
+		else
+			str = "";
+	}
 	len = ft_strlen(str);
 	if (data->precision >= 0 && len > data->precision)
 		len = data->precision;
@@ -63,7 +68,7 @@ int	put_pointer(unsigned long n, t_format *data)
 	if (n)
 	{
 		len = hex_len(n);
-		len += hex_prefix(data);
+		len += 2;
 	}
 	else
 		len = 5;
@@ -72,7 +77,10 @@ int	put_pointer(unsigned long n, t_format *data)
 	if (!data->dash && width > 0)
 		count += padding(' ', width);
 	if (n)
+	{
+		hex_prefix(data);
 		pnt_hex(n, data->specifier);
+	}
 	else
 		ft_putstr_fd("(nil)", 1);
 	if (data->dash && width > 0)
@@ -95,7 +103,7 @@ int	put_number(long n, t_format *data)
 		width -= 2;
 		count += 2;
 	}
-	if (data->precision >= len)
+	if (data->precision > len)
 		width -= data->precision - len;
 	if (is_d_i(data) && is_space_plus_minus(n, data))
 		width--;

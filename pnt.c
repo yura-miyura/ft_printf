@@ -6,7 +6,7 @@
 /*   By: yartym <yartym@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/28 08:31:00 by yartym            #+#    #+#             */
-/*   Updated: 2026/01/28 08:31:12 by yartym           ###   ########.fr       */
+/*   Updated: 2026/01/28 11:08:19 by yartym           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,15 @@
 
 void	pnt_type_number(long n, t_format *data)
 {
-	if (is_d_i(data))
-		pnt_int_pos(n);
-	else if(is_x_X(data))
-		pnt_hex(n, data->specifier);
-	else
-		pnt_uint(n);
+	if (!is_zero_with_flags(n, data))
+	{
+		if (is_d_i(data))
+			pnt_int_pos(n);
+		else if(is_x_X(data))
+			pnt_hex(n, data->specifier);
+		else if (data->specifier == 'u')
+			pnt_uint(n);
+	}
 }
 
 void	pnt_hex(unsigned long n, char c)

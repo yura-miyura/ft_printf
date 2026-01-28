@@ -6,7 +6,7 @@
 /*   By: yartym <yartym@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/28 08:19:14 by yartym            #+#    #+#             */
-/*   Updated: 2026/01/28 09:52:21 by yartym           ###   ########.fr       */
+/*   Updated: 2026/01/28 11:09:55 by yartym           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,13 @@ int	is_flag(char c, t_format *f)
 	else
 		return (0);
 	return (c);
+}
+
+int	is_zero_with_flags(long n, t_format *data)
+{
+	if (!n && data->precision >= 0)
+		return (1);
+	return (0);
 }
 
 int	is_space_plus_minus(int n, t_format *data)

@@ -19,7 +19,7 @@ int	is_d_i(t_format *data)
 	return (0);
 }
 
-int	is_x_X(t_format *data)
+int	is_x(t_format *data)
 {
 	if (data->specifier == 'x' || data->specifier == 'X')
 		return (1);
@@ -52,7 +52,7 @@ int	is_zero_with_flags(long n, t_format *data)
 
 int	is_space_plus_minus(int n, t_format *data)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	if (n >= 0 && (data->plus || data->space))

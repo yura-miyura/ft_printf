@@ -14,12 +14,12 @@
 
 void	reset_struct(t_format *f)
 {
-	ft_bzero(f,	sizeof(t_format));
+	ft_bzero(f, sizeof(t_format));
 	f->dash = 0;
 	f->zero = 0;
 	f->precision = -1;
-	f->hash= 0;
-	f->space= 0;
+	f->hash = 0;
+	f->space = 0;
 	f->plus = 0;
 	f->width = 0;
 	f->specifier = 0;
@@ -27,14 +27,14 @@ void	reset_struct(t_format *f)
 
 void	parse_format(const char *str, int *i, t_format *f)
 {
-	int		index;
+	int	index;
 
 	index = *i;
 	reset_struct(f);
 	while (is_flag(str[index], f))
 		index++;
 	while (ft_isdigit(str[index]))
-		f->width  = f->width * 10 + str[index++] - '0';
+		f->width = f->width * 10 + str[index++] - '0';
 	if (str[index] == '.')
 	{
 		index++;
@@ -48,7 +48,7 @@ void	parse_format(const char *str, int *i, t_format *f)
 
 int	space_plus_minus(int n, t_format *data)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	if (n >= 0 && (data->plus || data->space))
@@ -85,4 +85,3 @@ int	hex_prefix(t_format *data)
 	ft_putstr_fd(prefix, 1);
 	return (add);
 }
-

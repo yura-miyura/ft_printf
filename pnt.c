@@ -18,7 +18,7 @@ void	pnt_type_number(long n, t_format *data)
 	{
 		if (is_d_i(data))
 			pnt_int_pos(n);
-		else if(is_x_X(data))
+		else if (is_x(data))
 			pnt_hex(n, data->specifier);
 		else if (data->specifier == 'u')
 			pnt_uint(n);
@@ -40,7 +40,7 @@ void	pnt_hex(unsigned long n, char c)
 void	pnt_uint(unsigned int n)
 {
 	if (n >= 10)
-		pnt_uint(n/10);
+		pnt_uint(n / 10);
 	ft_putchar_fd(n % 10 + '0', 1);
 }
 

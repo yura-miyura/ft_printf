@@ -29,7 +29,7 @@ int	ft_printf(const char *str, ...)
 			i++;
 			parse_format(str, &i, &data);
 			count += convert(&args, &data);
- 		}
+		}
 		else
 		{
 			ft_putchar_fd(str[i], 1);
@@ -53,7 +53,7 @@ int	convert(va_list *args, t_format *data)
 		n = put_str(va_arg(*args, char *), data);
 	else if (is_d_i(data))
 		n = put_number(va_arg(*args, int), data);
-	else if (c == 'u' || is_x_X(data))
+	else if (c == 'u' || is_x(data))
 		n = put_number(va_arg(*args, unsigned int), data);
 	else if (c == 'p')
 		n = put_pointer(va_arg(*args, unsigned long), data);

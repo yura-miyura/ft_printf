@@ -15,7 +15,7 @@
 
 int	zero_padding(int len, int width, t_format *data)
 {
-	int n;
+	int	n;
 
 	n = 0;
 	if (data->precision < 0 && !data->dash && data->zero && width > 0)
@@ -27,7 +27,7 @@ int	zero_padding(int len, int width, t_format *data)
 
 int	width_padding(int width, t_format *data)
 {
-	int n;
+	int	n;
 
 	n = 0;
 	if (!data->dash && width > 0 && (!data->zero || data->precision >= 0))
@@ -47,7 +47,6 @@ int	dash_padding(int width, t_format *data)
 
 int	padding(char c, int size)
 {
-
 	int	n;
 
 	n = 0;
@@ -59,4 +58,3 @@ int	padding(char c, int size)
 	}
 	return (n);
 }
-

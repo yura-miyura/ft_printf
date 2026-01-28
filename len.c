@@ -72,7 +72,7 @@ int	len_number(long n, t_format *data)
 	{
 		if (is_d_i(data))
 			len = int_len(n);
-		else if (is_x_X(data))
+		else if (is_x(data))
 			len = hex_len(n);
 		else if (data->specifier == 'u')
 			len = u_int_len(n);

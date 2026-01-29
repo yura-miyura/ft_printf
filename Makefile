@@ -6,7 +6,7 @@
 #    By: yuriiartymicloud.com <yuriiartymicloud.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/11/19 21:34:31 by yuriiartymi       #+#    #+#              #
-#    Updated: 2026/01/28 08:59:15 by yartym           ###   ########.fr        #
+#    Updated: 2026/01/29 09:44:33 by yartym           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,6 +29,8 @@ SRCS = ft_printf.c \
 OBJS := ${SRCS:.c=.o}
 
 all: ${NAME}
+
+bonus: all
 
 ${NAME}: ${OBJS}
 	make -C ${LIBFT_DIR}

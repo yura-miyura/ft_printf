@@ -6,7 +6,7 @@
 /*   By: yartym <yartym@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/23 07:17:15 by yartym            #+#    #+#             */
-/*   Updated: 2026/01/28 09:44:21 by yartym           ###   ########.fr       */
+/*   Updated: 2026/01/29 09:42:36 by yartym           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	parse_format(const char *str, int *i, t_format *f)
 			f->precision = f->precision * 10 + str[index++] - '0';
 	}
 	f->specifier = str[index];
-	if (ft_strchr("cspiduxX", f->specifier))
+	if (ft_strchr("cspiduxX%", f->specifier))
 		*i = index;
 }
 

@@ -1,5 +1,4 @@
-### _This project has been created as part
-of the 42 curriculum by yartym_
+#### _This project has been created as part of the 42 curriculum by yartym_
 
 **ft_printf** is a custom implementation of the standard C library function `printf`. This project is part of the 42 curriculum and focuses on learning about variadic functions in C and building an extensible formatting engine.
 
@@ -73,9 +72,9 @@ To use `ft_printf` in your project, include the header and link the library:
 ---
 
 ### Resources
-* [pirntf man] (https://man7.org/linux/man-pages/man3/printf.3.html)
-* [variadic functions] (https://www.geeksforgeeks.org/c/variadic-functions-in-c/)
-* [format identifiers] (https://www.lix.polytechnique.fr/~liberti/public/computing/prog/c/C/FUNCTIONS/format.html)
+* [pirntf man](https://man7.org/linux/man-pages/man3/printf.3.html)
+* [variadic functions](https://www.geeksforgeeks.org/c/variadic-functions-in-c/)
+* [format identifiers](https://www.lix.polytechnique.fr/~liberti/public/computing/prog/c/C/FUNCTIONS/format.html)
 * lots of testing
-* [GEMINI for README.md] (https://gemini.google.com/app/578fb5376022a7bf?is_sa=1&is_sa=1&android-min-version=301356232&ios-min-version=322.0&campaign_id=bkws&utm_source=sem&utm_medium=paid-media&utm_campaign=bkws&pt=9008&mt=8&ct=p-growth-sem-bkws&gclsrc=aw.ds&gad_source=1&gad_campaignid=20108148187&gbraid=0AAAAApk5BhldpHyDLG9wZ_0wVYxGKFEZk&gclid=Cj0KCQiAp-zLBhDkARIsABcYc6tDUIutc7C8iDjQTh62LJes23R0UPQCw3aoPppS2dWEAW7Q1B9103MaAp_REALw_wcB)
+* [GEMINI for README.md](https://gemini.google.com/app/578fb5376022a7bf?is_sa=1&is_sa=1&android-min-version=301356232&ios-min-version=322.0&campaign_id=bkws&utm_source=sem&utm_medium=paid-media&utm_campaign=bkws&pt=9008&mt=8&ct=p-growth-sem-bkws&gclsrc=aw.ds&gad_source=1&gad_campaignid=20108148187&gbraid=0AAAAApk5BhldpHyDLG9wZ_0wVYxGKFEZk&gclid=Cj0KCQiAp-zLBhDkARIsABcYc6tDUIutc7C8iDjQTh62LJes23R0UPQCw3aoPppS2dWEAW7Q1B9103MaAp_REALw_wcB)
 

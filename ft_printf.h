@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yuriiartymicloud.com <yuriiartymicloud.    +#+  +:+       +#+        */
+/*   By: yartym <yartym@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/05 17:00:01 by yuriiartymi       #+#    #+#             */
-/*   Updated: 2026/01/28 10:56:54 by yartym           ###   ########.fr       */
+/*   Created: 2026/01/29 09:51:30 by yartym            #+#    #+#             */
+/*   Updated: 2026/01/29 09:51:32 by yartym           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

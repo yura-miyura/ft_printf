@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: yuriiartymicloud.com <yuriiartymicloud.    +#+  +:+       +#+         #
+#    By: yartym <yartym@student.42london.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2025/11/19 21:34:31 by yuriiartymi       #+#    #+#              #
-#    Updated: 2026/01/29 09:44:33 by yartym           ###   ########.fr        #
+#    Created: 2026/01/29 09:52:09 by yartym            #+#    #+#              #
+#    Updated: 2026/01/29 09:52:11 by yartym           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 

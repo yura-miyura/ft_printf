@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   padding.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yuriiartymicloud.com <yuriiartymicloud.    +#+  +:+       +#+        */
+/*   By: yartym <yartym@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/05 16:14:38 by yuriiartymi       #+#    #+#             */
-/*   Updated: 2026/01/29 09:15:18 by yartym           ###   ########.fr       */
+/*   Created: 2026/01/29 09:52:29 by yartym            #+#    #+#             */
+/*   Updated: 2026/01/29 09:52:30 by yartym           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include "libft/libft.h"
 
 int	zero_padding(int len, int width, t_format *data)
 {

@@ -20,6 +20,8 @@ int	ft_printf(const char *str, ...)
 	t_format	data;
 	int			add;
 
+	if (!str)
+		return (-1);
 	i = 0;
 	count = 0;
 	va_start(args, str);

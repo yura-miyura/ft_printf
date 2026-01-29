@@ -13,10 +13,11 @@
 NAME = libftprintf.a
 CC = cc
 AR = ar -rcs
-OFLAGS = -Wall -Werror -Wextra
+CFLAGS = -Wall -Werror -Wextra
 DEL = rm -f
 LIBFT_DIR = ./libft
 LIBFT = ${LIBFT_DIR}/libft.a
+OBJ_DIR = obj
 
 SRCS = ft_printf.c \
 		len.c \
@@ -26,19 +27,22 @@ SRCS = ft_printf.c \
 		padding.c \
 		is.c \
 
-OBJS := ${SRCS:.c=.o}
+OBJS := $(addprefix ${OBJ_DIR}/, ${SRCS:.c=.o})
 
 all: ${NAME}
 
 bonus: all
+
+${OBJ_DIR}:
+	mkdir -p $@
 
 ${NAME}: ${OBJS}
 	make -C ${LIBFT_DIR}
 	cp ${LIBFT} ${NAME}
 	${AR} ${NAME} ${OBJS}
 
-${OBJS}: %.o: %.c
-	${CC} ${OFLAGS} -c $< -o $@
+${OBJ_DIR}/%.o: %.c | ${OBJ_DIR}
+	${CC} ${CFLAGS} -c $< -o $@
 
 fclean: clean
 	${DEL} ${NAME}
@@ -49,6 +53,7 @@ clean:
 
 re: fclean all
 
-# main: all
-# 	${CC} ${OFLAGS} -g main.c -L. -lftprintf -o $@
+main: all
+	${CC} -g main.c -L. -lftprintf -o $@
+
 .PHONY: all fclean clean re

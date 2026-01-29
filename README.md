@@ -1,19 +1,18 @@
-### _This project has been created as part of the 42 curriculum by yartym_
+# ft_printf
 
-## About
+![42 Badge](https://img.shields.io/badge/42-%20London-black?style=flat-square&logo=42)
+![C](https://img.shields.io/badge/C-00599C?style=flat-square&logo=c&logoColor=white)
 
-**ft_printf** is a project that requires recoding the famous C library function `printf`. The goal is to learn about variadic functions (`stdarg.h`) and structure a program to be extensible and maintainable.
+**ft_printf** is a custom implementation of the standard C library function `printf`. This project is part of the 42 curriculum and focuses on learning about variadic functions in C and building an extensible formatting engine.
 
-This implementation creates a library `libftprintf.a` that mimics the behavior of the original `printf` for specific conversions and flags.
-
-## Features
+## 🚀 Features
 
 ### Supported Conversions
 | Specifier | Description |
-| :--- | :--- |
+| :---: | :--- |
 | `%c` | Prints a single character. |
-| `%s` | Prints a string (as defined by the common C convention). |
-| `%p` | The `void *` pointer argument has to be printed in hexadecimal format. |
+| `%s` | Prints a string. |
+| `%p` | Prints a `void *` pointer argument in hexadecimal format. |
 | `%d` | Prints a decimal (base 10) number. |
 | `%i` | Prints an integer in base 10. |
 | `%u` | Prints an unsigned decimal (base 10) number. |
@@ -21,44 +20,76 @@ This implementation creates a library `libftprintf.a` that mimics the behavior o
 | `%X` | Prints a number in hexadecimal (base 16) uppercase format. |
 | `%%` | Prints a percent sign. |
 
-### Bonus Flags Supported
+### Supported Flags (Bonus)
 This implementation handles the following flags and modifiers:
 
 | Flag | Description |
-| :--- | :--- |
-| `-` | Left-justify within the given field width; Right justification is the default. |
-| `0` | Left-pads the number with zeroes (0) instead of spaces when padding is specified. |
-| `.` | **Precision**: Specifies the minimum number of digits to appear for d, i, u, x, X conversions or the maximum number of characters for s conversions. |
-| `#` | **Hash**: Used with x or X conversions the value is preceeded with 0x or 0X respectively for values different than zero. |
-| ` ` | **Space**: A blank should be left before a positive number (or empty string) produced by a signed conversion. |
-| `+` | **Plus**: A sign (+ or -) should always be placed before a number produced by a signed conversion. |
-| `width` | Minimum number of characters to be printed. |
+| :---: | :--- |
+| `-` | Left-justify within the given field width. |
+| `0` | Left-pads the number with zeroes (0) instead of spaces. |
+| `.` | **Precision**: Specifies min digits for numbers or max chars for strings. |
+| `#` | **Hash**: Adds `0x` or `0X` prefix for `x` or `X` conversions. |
+| ` ` | **Space**: Leaves a blank before a positive number. |
+| `+` | **Plus**: Always places a sign (+ or -) before a number. |
+| `width` | Specifies the minimum number of characters to be printed. |
 
-## Installation
+---
 
+## 🛠️ Project Structure
+
+- `ft_printf.c`: Main entry point and variadic argument handling.
+- `format.c`: Logic for parsing the format string and flags into a `t_format` struct.
+- `print.c`: Core conversion logic for different types (hex, int, uint).
+- `put.c`: Output functions for characters, strings, pointers, and numbers.
+- `padding.c`: Handles width, zero, and dash padding logic.
+- `len.c`: Utility functions for calculating the length of various types.
+- `is.c`: Boolean helper functions for flag and type identification.
+- `libft/`: A custom library of utility functions used throughout the project.
+
+---
+
+## 📦 Installation & Usage
+
+### Compilation
 To compile the library, run:
 
 ```bash
 make
 ```
 
-This will generate the libftprintf.a file.
+This will create `libftprintf.a` in the root directory.
 
-💻 Usage
-To use this library in your code, include the header and link the library during compilation.
+### Integration
+To use `ft_printf` in your project, include the header and link the library:
 
-1. Include the Header
+1. **Include the header in your C files:**
+   ```c
+   #include "ft_printf.h"
+   ```
+
+2. **Compile your program with the library:**
+   ```bash
+   cc main.c libftprintf.a -o main
+   ```
+
+---
+
+## 🧪 Testing
+You can create a `main.c` file and test various cases:
 
 ```c
 #include "ft_printf.h"
-```
-2. Compile Your Program
 
-```Bash
-cc main.c libftprintf.a -o my_program
+int main(void)
+{
+    ft_printf("Hello %s!\n", "World");
+    ft_printf("Hex: %#x\n", 42);
+    ft_printf("Width and Precision: %10.5d\n", 42);
+    return (0);
+}
 ```
 
-3. Run
-```bash
-./my_program
-```
+---
+
+## 👤 Author
+- **yartym** (yartym@student.42london.com)

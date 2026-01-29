@@ -5,6 +5,20 @@
 
 **ft_printf** is a custom implementation of the standard C library function `printf`. This project is part of the 42 curriculum and focuses on learning about variadic functions in C and building an extensible formatting engine.
 
+---
+
+### Algorithm Design
+
+The core algorithm processes the input string character by character, scanning for the `%` delimiter which acts as the trigger for format specifications.
+
+1.  **Parsing:** When a `%` is detected, a dedicated parsing function traverses the subsequent characters to collect **flags**, **field width**, and **precision**. This data is stored in a temporary structure, and the parser stops once it identifies a conversion specifier or an invalid character.
+2.  **Conversion:** The populated structure is passed to a conversion function. This function retrieves the corresponding argument from the `va_list` and handles the formatting and output logic based on the collected flags.
+3.  **Error Handling:**
+    * If a standard error occurs (e.g., write failure), the function returns `-1`.
+    * If an unexpected character is encountered during parsing, it is printed literally without modification.
+
+---
+
 ### Features
 
 #### Supported Conversions
@@ -47,6 +61,11 @@ This implementation handles the following flags and modifiers:
 - `libft/`: A custom library of utility functions used throughout the project.
 
 ---
+### Algorithm justification
+
+The algorithm have been chosen to read a string character by character with detection of '%' as a sign of specifier presented. Then after meeting that one function that collects data traverces throught the line until it reaches the specifier or unexpected character and reterns the index to it. After all the date is that have been collected intro the structure passed to converting function that handles reprecentation and output of the content combining structure and data from va_list. In the case of error function returns -1 and in case of unexpected character have been met by the function outputs as it is without changes applied
+
+---
 
 ### Installation & Usage
 
@@ -79,5 +98,7 @@ To use `ft_printf` in your project, include the header and link the library:
 * [variadic functions](https://www.geeksforgeeks.org/c/variadic-functions-in-c/)
 * [format identifiers](https://www.lix.polytechnique.fr/~liberti/public/computing/prog/c/C/FUNCTIONS/format.html)
 * lots of testing
+
+#### AI have been used only to edit this README
 * [GEMINI for README.md](https://gemini.google.com/app/578fb5376022a7bf?is_sa=1&is_sa=1&android-min-version=301356232&ios-min-version=322.0&campaign_id=bkws&utm_source=sem&utm_medium=paid-media&utm_campaign=bkws&pt=9008&mt=8&ct=p-growth-sem-bkws&gclsrc=aw.ds&gad_source=1&gad_campaignid=20108148187&gbraid=0AAAAApk5BhldpHyDLG9wZ_0wVYxGKFEZk&gclid=Cj0KCQiAp-zLBhDkARIsABcYc6tDUIutc7C8iDjQTh62LJes23R0UPQCw3aoPppS2dWEAW7Q1B9103MaAp_REALw_wcB)
 

@@ -6,12 +6,11 @@
 /*   By: yuriiartymicloud.com <yuriiartymicloud.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/05 16:13:17 by yuriiartymi       #+#    #+#             */
-/*   Updated: 2026/01/28 08:58:21 by yartym           ###   ########.fr       */
+/*   Updated: 2026/01/29 09:50:35 by yartym           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include "libft/libft.h"
 
 int	ft_printf(const char *str, ...)
 {

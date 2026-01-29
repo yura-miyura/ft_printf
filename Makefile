@@ -14,7 +14,7 @@ NAME = libftprintf.a
 CC = cc
 AR = ar -rcs
 CFLAGS = -Wall -Werror -Wextra
-DEL = rm -f
+DEL = rm -rf
 LIBFT_DIR = ./libft
 LIBFT = ${LIBFT_DIR}/libft.a
 OBJ_DIR = obj
@@ -49,11 +49,11 @@ fclean: clean
 
 clean:
 	make fclean -C ${LIBFT_DIR}
-	${DEL} ${OBJS}
+	${DEL} ${OBJ_DIR}
 
 re: fclean all
 
-main: all
-	${CC} -g main.c -L. -lftprintf -o $@
+# main: all
+# ${CC} main.c -L. -lftprintf -o $@
 
-.PHONY: all fclean clean re
+.PHONY: all fclean clean re bonus

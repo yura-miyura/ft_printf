@@ -1,10 +1,13 @@
 #### _This project has been created as part of the 42 curriculum by yartym_
 
+
+### About
+
 **ft_printf** is a custom implementation of the standard C library function `printf`. This project is part of the 42 curriculum and focuses on learning about variadic functions in C and building an extensible formatting engine.
 
-## Features
+### Features
 
-### Supported Conversions
+#### Supported Conversions
 | Specifier | Description |
 | :---: | :--- |
 | `%c` | Prints a single character. |
@@ -17,7 +20,7 @@
 | `%X` | Prints a number in hexadecimal (base 16) uppercase format. |
 | `%%` | Prints a percent sign. |
 
-### Supported Flags (Bonus)
+#### Supported Flags (Bonus)
 This implementation handles the following flags and modifiers:
 
 | Flag | Description |
@@ -32,7 +35,7 @@ This implementation handles the following flags and modifiers:
 
 ---
 
-## Project Structure
+### Project Structure
 
 - `ft_printf.c`: Main entry point and variadic argument handling.
 - `format.c`: Logic for parsing the format string and flags into a `t_format` struct.
@@ -45,9 +48,9 @@ This implementation handles the following flags and modifiers:
 
 ---
 
-## Installation & Usage
+### Installation & Usage
 
-### Compilation
+#### Compilation
 To compile the library, run:
 
 ```bash
@@ -56,7 +59,7 @@ make
 
 This will create `libftprintf.a` in the root directory.
 
-### Integration
+#### Integration
 To use `ft_printf` in your project, include the header and link the library:
 
 1. **Include the header in your C files:**

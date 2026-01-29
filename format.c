@@ -25,16 +25,6 @@ void	reset_struct(t_format *f)
 	f->specifier = 0;
 }
 
-static int	is_specifier(char c)
-{
-	char	*specifiers;
-
-	specifiers = "cspiduxX%";
-	while (*specifiers && *specifiers != c)
-		specifiers++;
-	return (*specifiers == c);
-}
-
 void	parse_format(const char *str, int *i, t_format *f)
 {
 	int	index;
@@ -53,7 +43,7 @@ void	parse_format(const char *str, int *i, t_format *f)
 			f->precision = f->precision * 10 + str[index++] - '0';
 	}
 	f->specifier = str[index];
-	if (is_specifier(str[index]))
+	if (ft_strchr("cspiduxX", f->specifier))
 		*i = index;
 }
 
@@ -78,21 +68,16 @@ int	space_plus_minus(int n, t_format *data)
 	return (i);
 }
 
-int	hex_prefix(t_format *data)
+void	hex_prefix(t_format *data)
 {
 	char	*prefix;
 	char	c;
-	int		add;
 
-	add = 2;
 	prefix = NULL;
 	c = data->specifier;
 	if ((data->hash && c == 'x') || c == 'p')
 		prefix = "0x";
 	else if (data->hash && c == 'X')
 		prefix = "0X";
-	else
-		add = 0;
 	ft_putstr_fd(prefix, 1);
-	return (add);
 }

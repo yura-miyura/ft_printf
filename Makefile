@@ -20,7 +20,7 @@ LIBFT = ${LIBFT_DIR}/libft.a
 
 SRCS = ft_printf.c \
 		len.c \
-		pnt.c \
+		print.c \
 		put.c \
 		format.c \
 		padding.c \
@@ -38,20 +38,15 @@ ${NAME}: ${OBJS}
 ${OBJS}: %.o: %.c
 	${CC} ${OFLAGS} -c $< -o $@
 
-main: all
-	${CC} ${OFLAGS} -c main.c
-	${CC} ${OFLAGS} -g main.o -L. -lftprintf -o $@
-
-cl: fclean
-	make fclean -C ${LIBFT_DIR}
-	${DEL} main.o main
-
 fclean: clean
 	${DEL} ${NAME}
 
 clean:
+	make fclean -C ${LIBFT_DIR}
 	${DEL} ${OBJS}
 
 re: fclean all
 
-.PHONY: all fclean clean re main cl
+# main: all
+# 	${CC} ${OFLAGS} -g main.c -L. -lftprintf -o $@
+.PHONY: all fclean clean re

@@ -72,7 +72,7 @@ int	put_pointer(unsigned long n, t_format *data)
 	if (n)
 	{
 		hex_prefix(data);
-		pnt_hex(n, data->specifier);
+		print_hex(n, data->specifier);
 	}
 	else
 		ft_putstr_fd("(nil)", 1);
@@ -105,7 +105,7 @@ int	put_number(long n, t_format *data)
 	else if (n && is_x(data))
 		hex_prefix(data);
 	count += zero_padding(len, width, data);
-	pnt_type_number(n, data);
+	print_type_number(n, data);
 	count += dash_padding(width, data);
 	return (count);
 }

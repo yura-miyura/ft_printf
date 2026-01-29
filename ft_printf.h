@@ -45,11 +45,11 @@ int		is_x(t_format *data);
 int		is_space_plus_minus(int n, t_format *data);
 int		is_zero_with_flags(long n, t_format *data);
 
-//pnt
-void	pnt_hex(unsigned long n, char c);
-void	pnt_int_pos(int n);
-void	pnt_uint(unsigned int n);
-void	pnt_type_number(long n, t_format *data);
+//print
+void	print_hex(unsigned long n, char c);
+void	print_int_pos(int n);
+void	print_uint(unsigned int n);
+void	print_type_number(long n, t_format *data);
 
 // put
 int		put_char(char c, t_format *data);
@@ -65,7 +65,7 @@ int		padding(char c, int size);
 
 // utils
 int		space_plus_minus(int n, t_format *data);
-int		hex_prefix(t_format *data);
+void	hex_prefix(t_format *data);
 
 // main
 int		convert(va_list *args, t_format *data);

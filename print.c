@@ -1,31 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pnt.c                                              :+:      :+:    :+:   */
+/*   print.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yartym <yartym@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/28 08:31:00 by yartym            #+#    #+#             */
-/*   Updated: 2026/01/28 11:08:19 by yartym           ###   ########.fr       */
+/*   Created: 2026/01/29 09:14:27 by yartym            #+#    #+#             */
+/*   Updated: 2026/01/29 09:14:29 by yartym           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	pnt_type_number(long n, t_format *data)
+void	print_type_number(long n, t_format *data)
 {
 	if (!is_zero_with_flags(n, data))
 	{
 		if (is_d_i(data))
-			pnt_int_pos(n);
+			print_int_pos(n);
 		else if (is_x(data))
-			pnt_hex(n, data->specifier);
+			print_hex(n, data->specifier);
 		else if (data->specifier == 'u')
-			pnt_uint(n);
+			print_uint(n);
 	}
 }
 
-void	pnt_hex(unsigned long n, char c)
+void	print_hex(unsigned long n, char c)
 {
 	char	*base_hex;
 
@@ -33,18 +33,18 @@ void	pnt_hex(unsigned long n, char c)
 	if (c == 'X')
 		base_hex = "0123456789ABCDEF";
 	if (n >= 16)
-		pnt_hex(n / 16, c);
+		print_hex(n / 16, c);
 	ft_putchar_fd(base_hex[n % 16], 1);
 }
 
-void	pnt_uint(unsigned int n)
+void	print_uint(unsigned int n)
 {
 	if (n >= 10)
-		pnt_uint(n / 10);
+		print_uint(n / 10);
 	ft_putchar_fd(n % 10 + '0', 1);
 }
 
-void	pnt_int_pos(int n)
+void	print_int_pos(int n)
 {
 	if (n < 0)
 	{

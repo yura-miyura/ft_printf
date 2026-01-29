@@ -1,5 +1,8 @@
 #### _This project has been created as part of the 42 curriculum by yartym_
 
+![42 Badge](https://img.shields.io/badge/42-%20London-black?style=flat-square&logo=42)
+![C](https://img.shields.io/badge/C-00599C?style=flat-square&logo=c&logoColor=white)
+
 **ft_printf** is a custom implementation of the standard C library function `printf`. This project is part of the 42 curriculum and focuses on learning about variadic functions in C and building an extensible formatting engine.
 
 ## Features

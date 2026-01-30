@@ -77,9 +77,11 @@ This will create `libftprintf.a` in the root directory.
 To use `ft_printf` in your project, include the header and link the library:
 
 1. **Include the function prototype in your C files:**
-   ```c
-extern int	ft_printf(const char *str, ...);
-   ```
+  ```c
+  extern int	ft_printf(const char *str, ...);
+  ```
+```
+
 
 2. **Compile your program with the library:**
    ```bash

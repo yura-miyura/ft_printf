@@ -61,11 +61,6 @@ This implementation handles the following flags and modifiers:
 - `libft/`: A custom library of utility functions used throughout the project.
 
 ---
-### Algorithm justification
-
-The algorithm have been chosen to read a string character by character with detection of '%' as a sign of specifier presented. Then after meeting that one function that collects data traverces throught the line until it reaches the specifier or unexpected character and reterns the index to it. After all the date is that have been collected intro the structure passed to converting function that handles reprecentation and output of the content combining structure and data from va_list. In the case of error function returns -1 and in case of unexpected character have been met by the function outputs as it is without changes applied
-
----
 
 ### Installation & Usage
 
@@ -81,9 +76,9 @@ This will create `libftprintf.a` in the root directory.
 #### Integration
 To use `ft_printf` in your project, include the header and link the library:
 
-1. **Include the header in your C files:**
+1. **Include the function prototype in your C files:**
    ```c
-   #include "ft_printf.h"
+extern int	ft_printf(const char *str, ...);
    ```
 
 2. **Compile your program with the library:**

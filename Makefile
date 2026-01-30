@@ -17,7 +17,9 @@ CFLAGS = -Wall -Werror -Wextra
 DEL = rm -rf
 LIBFT_DIR = ./libft
 LIBFT = ${LIBFT_DIR}/libft.a
+INCLUDES = -Iincludes
 OBJ_DIR = obj
+SRC_DIR = src
 
 SRCS = ft_printf.c \
 		len.c \
@@ -41,8 +43,8 @@ ${NAME}: ${OBJS}
 	cp ${LIBFT} ${NAME}
 	${AR} ${NAME} ${OBJS}
 
-${OBJ_DIR}/%.o: %.c | ${OBJ_DIR}
-	${CC} ${CFLAGS} -c $< -o $@
+${OBJ_DIR}/%.o: ${SRC_DIR}/%.c | ${OBJ_DIR}
+	${CC} ${CFLAGS} ${INCLUDES} -c $< -o $@
 
 fclean: clean
 	${DEL} ${NAME}
@@ -53,7 +55,7 @@ clean:
 
 re: fclean all
 
-# main: all
-# ${CC} main.c -L. -lftprintf -o $@
+main: all
+	${CC} main.c libftprintf.a -o $@
 
-.PHONY: all fclean clean re bonus
+.PHONY: all fclean clean re bonus main

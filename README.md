@@ -80,7 +80,6 @@ To use `ft_printf` in your project, include the header and link the library:
   ```c
   extern int	ft_printf(const char *str, ...);
   ```
-```
 
 
 2. **Compile your program with the library:**

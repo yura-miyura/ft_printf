@@ -38,6 +38,7 @@ int	ft_printf(const char *str, ...)
 		count += add;
 		i++;
 	}
+	va_end(args);
 	return (count);
 }
 

@@ -90,7 +90,7 @@ To use `ft_printf` in your project, include the header and link the library:
 ---
 
 ### Resources
-* [pirntf man](https://man7.org/linux/man-pages/man3/printf.3.html)
+* [printf man](https://man7.org/linux/man-pages/man3/printf.3.html)
 * [variadic functions](https://www.geeksforgeeks.org/c/variadic-functions-in-c/)
 * [format identifiers](https://www.lix.polytechnique.fr/~liberti/public/computing/prog/c/C/FUNCTIONS/format.html)
 * lots of testing

@@ -56,6 +56,6 @@ clean:
 re: fclean all
 
 main: all
-	${CC} main.c libftprintf.a -o $@
+	${CC} -fsanitize=address main.c libftprintf.a -o $@
 
 .PHONY: all fclean clean re bonus main
